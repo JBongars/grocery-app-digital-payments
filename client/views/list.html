@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="jumbotron">
+        <form name="searchForm" novalidate ng-submit="ctrl.search(ctrl.searchType.selectedType,ctrl.keyword,ctrl.sortBy)" class="form-group">
+            <div class="search-type col-lg-3">
+                <ui-select multiple ng-model="ctrl.searchType.selectedType" theme="bootstrap" sortable="true" close-on-select="false">
+                    <ui-select-match placeholder="Search by...">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="type in ctrl.typesOfSearch">
+                        {{type}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="keyword col-lg-6">
+                <input type="text" name="keyword" class="form-control" ng-model="ctrl.keyword"
+                       placeholder="e.g. Ahold, Riceland"
+                       required>
+            </div>
+            <div class="sort-by col-lg-2">
+                <select ng-model="ctrl.sortBy" class="form-control">
+                    <option value="" disabled selected>Sort by</option>
+                    <option value="ASC">Ascending</option>
+                    <option value="DESC">Descending</option>
+                </select>
+            </div>
+            <div class="col-lg-1">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="list" ng-show="ctrl.products">
+        <div class="row">
+            <div class="list-header col-lg-12 col-md-12 col-sm-12">
+                <ul uib-pagination total-items="ctrl.totalItems" ng-model="ctrl.currentPage"
+                    max-size="ctrl.maxSize" items-per-page="ctrl.itemsPerPage" ng-change="ctrl.pageChanged()"
+                    class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="product col-lg-3 col-md-4 col-sm-6" ng-repeat="product in ctrl.products | orderBy:'brand'">
+                <a class="thumb">
+                    <img ng-src="http://www.barcodes4.me/barcode/c128a/{{product.upc12}}.png?IsTextDrawn=1" alt="{{product.upc12}}" />
+                </a>
+                <h4>{{product.brand}}</h4>
+                <h5>{{product.name}}</h5>
+                <button type="button" class="btn btn-default" ng-click="ctrl.getProduct(product.id)">Edit</button>
+            </div>
+        </div>
+    </div>
+    <div class="list" ng-hide="ctrl.products.length>0">
+        <h1>No record found.</h1>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "name": "grocery-app",
+  "description": "",
+  "main": "server/app.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "angular": "^1.6.6",
+    "angular-ui-router": "^1.0.6",
+    "bootstrap-select": "^1.12.4",
+    "angular-ui-select": "^0.19.8",
+    "angular-sanitize": "^1.6.6",
+    "angular-bootstrap": "^2.5.0"
+  }
+}
